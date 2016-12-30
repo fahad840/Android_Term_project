@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_receiving"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.bilal.donorandreceiver.Receive.Receiving">
+
+    <TextView
+        android:text="Please Make Your Request !"
+        android:layout_width="wrap_content"
+        android:textSize="25dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/P"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="114dp"
+        android:id="@+id/Sendreqbtn"
+        style="@style/Widget.AppCompat.Button.Colored" />
+
+    <TextView
+        android:text="Choose Blood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView6"
+        android:layout_alignBaseline="@+id/bloodtypespin"
+        android:layout_alignBottom="@+id/bloodtypespin"
+        android:layout_alignStart="@+id/P" />
+
+    <TextView
+        android:text="Location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bloodtypespin"
+        android:layout_alignStart="@+id/textView6"
+        android:layout_marginTop="51dp"
+        android:id="@+id/textView7" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_below="@+id/bloodtypespin"
+        android:layout_alignEnd="@+id/P"
+        android:layout_marginTop="34dp"
+        android:id="@+id/locationedit"
+        android:hint="Type Location" />
+
+    <Spinner
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:id="@+id/bloodtypespin"
+        android:entries="@array/blood_array"
+        android:prompt="@string/blood_prompt"
+
+        android:layout_below="@+id/P"
+        android:layout_alignStart="@+id/Sendreqbtn" />
+
+    <TextView
+        android:text="Description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="41dp"
+        android:id="@+id/textView8"
+        android:layout_below="@+id/locationedit"
+        android:layout_alignStart="@+id/textView7" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:layout_alignTop="@+id/textView8"
+        android:layout_alignStart="@+id/locationedit"
+        android:id="@+id/descriptionedit"
+        android:hint="Type Here !" />
+
+</RelativeLayout>

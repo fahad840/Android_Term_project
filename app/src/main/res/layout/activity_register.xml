@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_register"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.bilal.donorandreceiver.LoginPage.Register">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_marginTop="29dp"
+        android:id="@+id/NameText"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true"
+        android:hint="Enter Your Name" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:layout_below="@+id/NameText"
+        android:layout_alignEnd="@+id/NameText"
+        android:layout_marginTop="39dp"
+        android:id="@+id/EmailText"
+        android:hint="Enter Your Email Address" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:layout_below="@+id/EmailText"
+        android:layout_alignEnd="@+id/EmailText"
+        android:layout_marginTop="38dp"
+        android:id="@+id/PasswordText"
+        android:hint="Enter Your Password" />
+
+    <TextView
+    android:text="Please Enter your Information here !"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+    android:textSize="20dp"
+    android:id="@+id/textView3"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Sign up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/signup"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="67dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:layout_below="@+id/PasswordText"
+        android:layout_alignStart="@+id/PasswordText"
+        android:layout_marginTop="18dp"
+        android:id="@+id/phoneedit"
+        android:hint="Enter Your Number" />
+
+</RelativeLayout>
