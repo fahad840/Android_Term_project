@@ -55,4 +55,13 @@
         android:id="@+id/Myreqbtn"
         android:layout_below="@+id/Receivebtn"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Myreqbtn"
+        android:layout_alignEnd="@+id/Receivebtn"
+        android:layout_marginTop="29dp"
+        android:id="@+id/Updatebtn" />
 </RelativeLayout>

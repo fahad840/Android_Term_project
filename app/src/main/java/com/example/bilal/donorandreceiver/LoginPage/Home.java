@@ -12,7 +12,7 @@ import com.example.bilal.donorandreceiver.R;
 import com.example.bilal.donorandreceiver.Receive.Receiving;
 
 public class Home extends AppCompatActivity {
-Button donate,Receive,Myreq;
+Button donate,Receive,Myreq,Update;
     TextView textView;
     int i;
     @Override
@@ -23,6 +23,7 @@ Button donate,Receive,Myreq;
         Receive= (Button) findViewById(R.id.Receivebtn);
         Myreq= (Button) findViewById(R.id.Myreqbtn);
         textView= (TextView) findViewById(R.id.welcome);
+        Update= (Button) findViewById(R.id.Updatebtn);
         final Intent intent=getIntent();
          i=intent.getIntExtra("idno",0);
         textView.setText("Welcome "+ String.valueOf(i).toString());
@@ -48,6 +49,15 @@ Button donate,Receive,Myreq;
                 startActivity(intent2);
             }
         });
+        Update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent3=new Intent(Home.this,UpdatePage.class);
+                intent3.putExtra("idno3",i);
+                startActivity(intent3);
+            }
+        });
+
 
     }
 }
