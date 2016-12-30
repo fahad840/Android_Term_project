@@ -38,7 +38,6 @@ public class UpdatePage extends AppCompatActivity {
     int strid,id;
     ReceiverData gSonData=new ReceiverData();
     RequestQueue requestQueue;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
