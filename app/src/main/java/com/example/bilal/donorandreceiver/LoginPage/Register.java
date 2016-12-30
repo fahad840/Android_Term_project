@@ -51,6 +51,7 @@ EditText email,name,Password,phone;
                         Toast.makeText(Register.this,response,Toast.LENGTH_LONG).show();
 
                     }
+
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {

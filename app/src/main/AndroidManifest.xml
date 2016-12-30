@@ -41,7 +41,8 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".LoginPage.UpdatePage"></activity>
+        <activity android:name=".LoginPage.UpdatePage" />
+        <activity android:name=".Donate.DetailDonating"></activity>
     </application>
 
 </manifest>
