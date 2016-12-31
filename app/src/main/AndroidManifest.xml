@@ -43,6 +43,7 @@
 
         <activity android:name=".LoginPage.UpdatePage" />
         <activity android:name=".Donate.DetailDonating" />
+        <activity android:name=".LoginPage.DetailMyRequest"></activity>
     </application>
 
 </manifest>

@@ -47,7 +47,7 @@ public class UpdatePage extends AppCompatActivity {
         desedit= (EditText) findViewById(R.id.UpdateDes);
         Updatenow= (Button) findViewById(R.id.UpdateNowbtn);
         Intent intent=getIntent();
-        id=intent.getIntExtra("idno",0);
+        id=intent.getIntExtra("idnumber",0);
         s=String.valueOf(id);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Url.urlreceiver, new Response.Listener<String>() {
             @Override

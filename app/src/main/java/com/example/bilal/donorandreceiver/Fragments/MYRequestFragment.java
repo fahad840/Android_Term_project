@@ -20,6 +20,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.bilal.donorandreceiver.Donate.DetailDonating;
 import com.example.bilal.donorandreceiver.Donate.PojoReceiver;
 import com.example.bilal.donorandreceiver.Donate.ReceiverAdapter;
+import com.example.bilal.donorandreceiver.LoginPage.DetailMyRequest;
 import com.example.bilal.donorandreceiver.R;
 import com.example.bilal.donorandreceiver.Url;
 
@@ -86,6 +87,7 @@ View view;
                             pojo[j].setBloodtype(strbloodtype);
                             pojo[j].setDescription(strdes);
                             pojo[j].setLocation(strlocation);
+                            pojo[j].setId(resultsArray.getJSONObject(j).getInt("id"));
                             list2.add(pojo[j]);
 
                         }
@@ -115,11 +117,11 @@ View view;
                 pojoReceivers[0] = (PojoReceiver) listView.getItemAtPosition(position);
                 Toast.makeText(getActivity(),"You selected : " + pojoReceivers[0].getBloodtype(),Toast.LENGTH_SHORT).show();
 
-                Intent intent=new Intent(getActivity(),DetailDonating.class);
-                intent.putExtra("bloodpojo",pojoReceivers[0].getBloodtype());
-                intent.putExtra("locationpojo",pojoReceivers[0].getLocation());
-                intent.putExtra("despojo",pojoReceivers[0].getDescription());
-                intent.putExtra("idpojo",pojoReceivers[0].getId());
+                Intent intent=new Intent(getActivity(),DetailMyRequest.class);
+                intent.putExtra("bloodpojo12",pojoReceivers[0].getBloodtype());
+                intent.putExtra("locationpojo12",pojoReceivers[0].getLocation());
+                intent.putExtra("despojo12",pojoReceivers[0].getDescription());
+                intent.putExtra("pojoid",pojoReceivers[0].getId());
                 startActivity(intent);
             }
         });

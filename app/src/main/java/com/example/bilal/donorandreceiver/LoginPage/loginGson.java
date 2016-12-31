@@ -45,75 +45,73 @@ public class loginGson extends AppCompatActivity {
             public void onClick(View v) {
                 u=email.getText().toString();
                 p=password.getText().toString();
-//                if (u.equals("")&&p.equals(""))
-//                {
-//                    Toast.makeText(getApplicationContext(),"Username and password is Empty",Toast.LENGTH_LONG).show();
-//                }
-//                else if(u.equals(""))
-//                {
-//                    Toast.makeText(getApplicationContext(),"Email is Empty",Toast.LENGTH_LONG).show();
-//                }
-//                else if(p.equals(""))
-//                {
-//                    Toast.makeText(getApplicationContext(),"Password is Empty",Toast.LENGTH_LONG).show();
-//                }
-//                else{
-                StringRequest JSONRequest=new StringRequest(Request.Method.GET, Url.urluser, new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
+                if (u.equals("")&&p.equals(""))
+                {
+                    Toast.makeText(getApplicationContext(),"Username and password is Empty",Toast.LENGTH_LONG).show();
+                }
+                else if(u.equals(""))
+                {
+                    Toast.makeText(getApplicationContext(),"Email is Empty",Toast.LENGTH_LONG).show();
+                }
+                else if(p.equals(""))
+                {
+                    Toast.makeText(getApplicationContext(),"Password is Empty",Toast.LENGTH_LONG).show();
+                }
+                else {
+                    StringRequest JSONRequest = new StringRequest(Request.Method.GET, Url.urluser, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
 
-                        try {
+                            try {
 
-                            JSONObject responseObject = new JSONObject(response);
-                            JSONArray resultsArray = responseObject.getJSONArray("data");
-                            DataLogin datum[]=new DataLogin[resultsArray.length()];
+                                JSONObject responseObject = new JSONObject(response);
+                                JSONArray resultsArray = responseObject.getJSONArray("data");
+                                DataLogin datum[] = new DataLogin[resultsArray.length()];
 
-                            List<DataLogin> list=new ArrayList<>();
-                            for (int i=0;i<resultsArray.length();i++)
-                            {
-                                strid=resultsArray.getJSONObject(i).getInt("id");
-                                stremail=resultsArray.getJSONObject(i).getString("email");
-                                strpassword=resultsArray.getJSONObject(i).getString("password");
-                                datum[i]=new DataLogin();
-                                datum[i].setEmail(stremail);
-                                datum[i].setId(strid);
-                                datum[i].setPassword(strpassword);
-                                datum[i].setName(resultsArray.getJSONObject(i).getString("name"));
-                                list.add(datum[i]);
-                            }
-                            gSonData.setData(list);
-                            for (int j=0;j<resultsArray.length();j++)
-                            {
-                                if (u.equals(datum[j].getEmail())&&p.equals(datum[j].getPassword())){
-                                    Toast.makeText(getApplication(),"Sign in successfull!!",Toast.LENGTH_LONG).show();
-                                    Intent intent=new Intent(loginGson.this, Home.class);
-                                    intent.putExtra("idno",datum[j].getId());
-                                    intent.putExtra("name12",datum[j].getName());
-                                    startActivity(intent);
-
+                                List<DataLogin> list = new ArrayList<>();
+                                for (int i = 0; i < resultsArray.length(); i++) {
+                                    strid = resultsArray.getJSONObject(i).getInt("id");
+                                    stremail = resultsArray.getJSONObject(i).getString("email");
+                                    strpassword = resultsArray.getJSONObject(i).getString("password");
+                                    datum[i] = new DataLogin();
+                                    datum[i].setEmail(stremail);
+                                    datum[i].setId(strid);
+                                    datum[i].setPassword(strpassword);
+                                    datum[i].setName(resultsArray.getJSONObject(i).getString("name"));
+                                    list.add(datum[i]);
                                 }
+                                gSonData.setData(list);
+                                for (int j = 0; j < resultsArray.length(); j++) {
+                                    if (u.equals(datum[j].getEmail()) && p.equals(datum[j].getPassword())) {
+                                        Toast.makeText(getApplication(), "Sign in successfull!!", Toast.LENGTH_LONG).show();
+                                        Intent intent = new Intent(loginGson.this, Home.class);
+                                        intent.putExtra("idno", datum[j].getId());
+                                        intent.putExtra("name12", datum[j].getName());
+                                        startActivity(intent);
+
+                                    }
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+
+
                         }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
 
+                        }
+                    });
+                    //if (flag==false)
+                    // {
+                    //   Toast.makeText(getApplicationContext(),"Please Enter Valid Email and Password !",Toast.LENGTH_LONG).show();
 
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
+                    //}
+                    RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+                    requestQueue.add(JSONRequest);
 
-                    }
-                });
-                //if (flag==false)
-                // {
-                //   Toast.makeText(getApplicationContext(),"Please Enter Valid Email and Password !",Toast.LENGTH_LONG).show();
-
-                //}
-                RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-                requestQueue.add(JSONRequest);
-
-
+                }
 
             }
             //}
