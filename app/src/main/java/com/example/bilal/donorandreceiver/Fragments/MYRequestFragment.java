@@ -1,16 +1,13 @@
 package com.example.bilal.donorandreceiver.Fragments;
 
 
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -21,10 +18,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.bilal.donorandreceiver.Donate.DetailDonating;
-import com.example.bilal.donorandreceiver.Donate.Donating;
 import com.example.bilal.donorandreceiver.Donate.PojoReceiver;
 import com.example.bilal.donorandreceiver.Donate.ReceiverAdapter;
-import com.example.bilal.donorandreceiver.Donate.ReceiverData;
 import com.example.bilal.donorandreceiver.R;
 import com.example.bilal.donorandreceiver.Url;
 
@@ -37,20 +32,27 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ListFragment extends android.app.Fragment {
-    ListView listView;
+public class MYRequestFragment extends android.app.Fragment {
+
+View view;
+    int id;
+    String strid,strbloodtype,strlocation,strdes,strsender;
     ArrayList<PojoReceiver> list;
-    String strbloodtype, strlocation, strdes, strsender;
+    ArrayList<PojoReceiver> list2;
     ReceiverAdapter receiverAdapter;
     PojoReceiver pojoReceivers[];
-    ReceiverData gSonData = new ReceiverData();
-    private boolean isRotate = false;
+    ListView listView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_list, container, false);
-        listView = (ListView) view.findViewById(R.id.FragmentListview);
-        list = new ArrayList<>();
+        view= inflater.inflate(R.layout.fragment_myrequest, container, false);
+
+        Intent intent=getActivity().getIntent();
+        id=intent.getIntExtra("idno2",0);
+        strid=String.valueOf(id);
+        list=new ArrayList<>();
+        list2=new ArrayList<>();
+        listView= (ListView)view.findViewById(R.id.MyReqList);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Url.urlreceiver, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -58,22 +60,37 @@ public class ListFragment extends android.app.Fragment {
                     JSONObject responseObject = new JSONObject(response);
                     JSONArray resultsArray = responseObject.getJSONArray("data");
                     pojoReceivers = new PojoReceiver[resultsArray.length()];
+                    PojoReceiver pojo[]=new PojoReceiver[resultsArray.length()];
                     for (int i = 0; i < resultsArray.length(); i++) {
-                        strbloodtype = resultsArray.getJSONObject(i).getString("bloodtype");
-                        strlocation = resultsArray.getJSONObject(i).getString("location");
-                        strdes = resultsArray.getJSONObject(i).getString("description");
-                        strsender = resultsArray.getJSONObject(i).getString("sender");
+
+//                        strbloodtype = resultsArray.getJSONObject(i).getString("bloodtype");
+//                        strlocation = resultsArray.getJSONObject(i).getString("location");
+//                        strdes = resultsArray.getJSONObject(i).getString("description");
+                        strsender=resultsArray.getJSONObject(i).getString("sender");
                         pojoReceivers[i] = new PojoReceiver();
-                        pojoReceivers[i].setBloodtype(strbloodtype);
-                        pojoReceivers[i].setLocation(strlocation);
-                        pojoReceivers[i].setDescription(strdes);
+//                        pojoReceivers[i].setBloodtype(strbloodtype);
+//                        pojoReceivers[i].setLocation(strlocation);
+//                        pojoReceivers[i].setDescription(strdes);
                         pojoReceivers[i].setSender(strsender);
-                        pojoReceivers[i].setId(resultsArray.getJSONObject(i).getInt("id"));
 
                         list.add(pojoReceivers[i]);
                     }
-                    gSonData.setData(list);
-                    receiverAdapter = new ReceiverAdapter(getActivity(), R.layout.adapter_receive, list);
+                    for (int j=0;j<resultsArray.length();j++)
+                    {
+                        if (pojoReceivers[j].getSender().equals(strid))
+                        {
+                            strbloodtype = resultsArray.getJSONObject(j).getString("bloodtype");
+                            strlocation = resultsArray.getJSONObject(j).getString("location");
+                            strdes = resultsArray.getJSONObject(j).getString("description");
+                            pojo[j]=new PojoReceiver();
+                            pojo[j].setBloodtype(strbloodtype);
+                            pojo[j].setDescription(strdes);
+                            pojo[j].setLocation(strlocation);
+                            list2.add(pojo[j]);
+
+                        }
+                    }
+                    receiverAdapter=new ReceiverAdapter(getActivity(),R.layout.adapter_receive,list2);
                     listView.setAdapter(receiverAdapter);
 
                 } catch (JSONException e) {
@@ -89,14 +106,13 @@ public class ListFragment extends android.app.Fragment {
 
         });
 
+
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         requestQueue.add(stringRequest);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Detail_Fragment detail_fragment=new Detail_Fragment();
-
-                 pojoReceivers[0] = (PojoReceiver) listView.getItemAtPosition(position);
+                pojoReceivers[0] = (PojoReceiver) listView.getItemAtPosition(position);
                 Toast.makeText(getActivity(),"You selected : " + pojoReceivers[0].getBloodtype(),Toast.LENGTH_SHORT).show();
 
                 Intent intent=new Intent(getActivity(),DetailDonating.class);
@@ -108,8 +124,7 @@ public class ListFragment extends android.app.Fragment {
             }
         });
 
-
         return view;
     }
-}
 
+}

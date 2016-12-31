@@ -16,6 +16,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.bilal.donorandreceiver.Fragments.ListFragment;
 import com.example.bilal.donorandreceiver.LoginPage.UpdatePage;
 import com.example.bilal.donorandreceiver.R;
 import com.example.bilal.donorandreceiver.Url;
@@ -23,16 +24,17 @@ import com.example.bilal.donorandreceiver.Url;
 import java.lang.reflect.Array;
 
 public class DetailDonating extends AppCompatActivity {
-TextView txtblood,txtdes,txtloc;
+    TextView txtblood, txtdes, txtloc;
     int id;
-    String blood,loc,des,s;
-    Button update,del;
+    String blood, loc, des, s;
+    Button update, del;
     UpdatePage updatePage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_donating);
-        txtblood= (TextView) findViewById(R.id.FragmentBlood);
+        txtblood = (TextView) findViewById(R.id.FragmentBlood);
         txtdes= (TextView) findViewById(R.id.FragmentDes);
         txtloc= (TextView) findViewById(R.id.FragmentLocation);
         update = (Button) findViewById(R.id.updatebtn);
@@ -89,6 +91,7 @@ TextView txtblood,txtdes,txtloc;
                         .show();
             }
         });
-
+//
     }
+
 }

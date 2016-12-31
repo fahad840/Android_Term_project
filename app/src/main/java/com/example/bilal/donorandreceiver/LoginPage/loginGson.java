@@ -78,6 +78,7 @@ public class loginGson extends AppCompatActivity {
                                 datum[i].setEmail(stremail);
                                 datum[i].setId(strid);
                                 datum[i].setPassword(strpassword);
+                                datum[i].setName(resultsArray.getJSONObject(i).getString("name"));
                                 list.add(datum[i]);
                             }
                             gSonData.setData(list);
@@ -87,6 +88,7 @@ public class loginGson extends AppCompatActivity {
                                     Toast.makeText(getApplication(),"Sign in successfull!!",Toast.LENGTH_LONG).show();
                                     Intent intent=new Intent(loginGson.this, Home.class);
                                     intent.putExtra("idno",datum[j].getId());
+                                    intent.putExtra("name12",datum[j].getName());
                                     startActivity(intent);
 
                                 }

@@ -15,6 +15,7 @@ public class Home extends AppCompatActivity {
 Button donate,Receive,Myreq,Update;
     TextView textView;
     int i;
+    String s;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,9 +25,10 @@ Button donate,Receive,Myreq,Update;
         Myreq= (Button) findViewById(R.id.Myreqbtn);
         textView= (TextView) findViewById(R.id.welcome);
         Update= (Button) findViewById(R.id.Updatebtn);
-        final Intent intent=getIntent();
+        Intent intent=getIntent();
          i=intent.getIntExtra("idno",0);
-        textView.setText("Welcome "+ String.valueOf(i).toString());
+         s=intent.getStringExtra("name12");
+        textView.setText("Welcome "+ s);
         donate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

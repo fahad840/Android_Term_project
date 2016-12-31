@@ -35,4 +35,5 @@ public class Donating extends AppCompatActivity {
         fragmentTransaction.commit();
 
     }
+
 }
